@@ -16,7 +16,7 @@
   "resourceFolders": [
     "herz"
   ],
-  "dependents": {
+  "dependencies": {
     "ada:core": "f237331c-60f8-4fe5-98c2-c14fbc4ed143"
   }
 }

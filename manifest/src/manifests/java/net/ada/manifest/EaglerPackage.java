@@ -15,7 +15,7 @@ public record EaglerPackage (
         String platformTargetVersion,
         String platformAuthor,
         List<String> resourceFolders,
-        Map<String, String> dependents
+        Map<String, String> dependencies
 ){
 
 }
