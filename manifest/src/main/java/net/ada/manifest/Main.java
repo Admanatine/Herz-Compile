@@ -24,7 +24,7 @@ public class Main {
                 "lax1dude",
                 List.of("herz"),
                 Map.of("common", "common.jar",
-                        "lwjgl", "lwjgl.jar",
+                        "desktop", "desktop.jar",
                         "teavm-js", "teavm-js.jar"),
                 Map.of("ada:core", "f237331c-60f8-4fe5-98c2-c14fbc4ed143")
         );
