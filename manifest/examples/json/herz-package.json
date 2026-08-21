@@ -2,7 +2,7 @@
   "herz_version": "0.0.0",
   "package_name": "ada:example_package",
   "package_version": "0.0.1",
-  "uuid": "01d81562-322b-419a-a6e8-afc0032cfee3",
+  "uuid": "8d781ca8-d72a-4fbd-9ffa-3f0d4289fc1c",
   "authors": [
     "Example Author"
   ],
@@ -17,8 +17,8 @@
   ],
   "platform_target_mappings": {
     "teavm-js": "teavm-js.jar",
-    "lwjgl": "lwjgl.jar",
-    "common": "common.jar"
+    "common": "common.jar",
+    "desktop": "desktop.jar"
   },
   "dependents": {
     "ada:core": "f237331c-60f8-4fe5-98c2-c14fbc4ed143"
