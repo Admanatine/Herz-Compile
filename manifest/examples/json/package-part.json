@@ -1,0 +1,6 @@
+{
+  "targetPlatform": "eagler/1_8_8/teavm-js",
+  "mixinsRef": [
+    "mixins.common.json"
+  ]
+}

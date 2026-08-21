@@ -1,0 +1,26 @@
+{
+  "herz_version": "0.0.0",
+  "package_name": "ada:example_package",
+  "package_version": "0.0.1",
+  "uuid": "01d81562-322b-419a-a6e8-afc0032cfee3",
+  "authors": [
+    "Example Author"
+  ],
+  "description": [
+    "A mod for modders!!!"
+  ],
+  "platformTarget": "eagler/1_8_8",
+  "platformTargetVersion": "u53",
+  "platformAuthor": "lax1dude",
+  "resourceFolders": [
+    "herz"
+  ],
+  "platform_target_mappings": {
+    "teavm-js": "teavm-js.jar",
+    "lwjgl": "lwjgl.jar",
+    "common": "common.jar"
+  },
+  "dependents": {
+    "ada:core": "f237331c-60f8-4fe5-98c2-c14fbc4ed143"
+  }
+}
