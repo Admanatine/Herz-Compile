@@ -7,6 +7,7 @@ public record EaglerPackage (
         String herz_version,
         String package_name,
         String package_version,
+        String packageMainClass,
         String uuid,
         List<String> authors,
         List<String> description,
@@ -14,7 +15,6 @@ public record EaglerPackage (
         String platformTargetVersion,
         String platformAuthor,
         List<String> resourceFolders,
-        Map<String, String> platform_target_mappings,
         Map<String, String> dependents
 ){
 

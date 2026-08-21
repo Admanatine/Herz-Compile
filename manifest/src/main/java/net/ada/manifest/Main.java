@@ -16,6 +16,7 @@ public class Main {
                 "0.0.0",
                 "ada:example_package",
                 "0.0.1",
+                "net.ada.core.main.HerzCore",
                 UUID.randomUUID().toString(),
                 List.of("Example Author"),
                 List.of("A mod for modders!!!"),
@@ -23,9 +24,6 @@ public class Main {
                 "u53",
                 "lax1dude",
                 List.of("herz"),
-                Map.of("common", "common.jar",
-                        "desktop", "desktop.jar",
-                        "teavm-js", "teavm-js.jar"),
                 Map.of("ada:core", "f237331c-60f8-4fe5-98c2-c14fbc4ed143")
         );
 
@@ -37,26 +35,29 @@ public class Main {
                 Map.of("default", 1),
                 ""
         );
+        HerzPlatform herzPlatform = new HerzPlatform(
+                "eagler/1_8_8",
+                "u53",
+                "lax1dude",
+                List.of("desktop", "teavm-js", "teavm-wasm_gc")
+        );
         PackagePart packagePart = new PackagePart("eagler/1_8_8/teavm-js", List.of("mixins.common.json"));
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
         if (args.length == 0) {
             Files.write(FileSystems.getDefault().getPath("mixins.common.json"), gson.toJson(mixinSource).getBytes());
             Files.write(FileSystems.getDefault().getPath("eaglerPackage.json"), gson.toJson(eaglerPackage).getBytes());
             Files.write(FileSystems.getDefault().getPath("package-part.json"), gson.toJson(packagePart).getBytes());
+            Files.write(FileSystems.getDefault().getPath("herz-platform.json"), gson.toJson(herzPlatform).getBytes());
 
         }
         else if (args.length == 1) {
             Files.write(Path.of(args[0]).resolve("mixins.common.json"), gson.toJson(mixinSource).getBytes());
             Files.write(Path.of(args[0]).resolve("herz-package.json"), gson.toJson(eaglerPackage).getBytes());
             Files.write(Path.of(args[0]).resolve("package-part.json"), gson.toJson(packagePart).getBytes());
-        }
-        else if (args.length == 3) {
-            Files.write(Path.of(args[0]), gson.toJson(mixinSource).getBytes());
-            Files.write(Path.of(args[1]), gson.toJson(eaglerPackage).getBytes());
-            Files.write(Path.of(args[2]), gson.toJson(packagePart).getBytes());
+            Files.write(Path.of(args[0]).resolve("herz-platform.json"), gson.toJson(herzPlatform).getBytes());
         }
         else {
-            System.out.println("Usage: jar -jar <jar loc>\n or jar -jar <jar loc> <target generation folder>\n or jar -jar <jar loc> <mixin manifest target file> <target eagler package manifest file> <target package part manifest file>");
+            System.out.println("Usage: jar -jar <jar loc>\n or jar -jar <jar loc> <target generation folder>");
         }
     }
 }

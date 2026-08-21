@@ -1,0 +1,10 @@
+{
+  "platform": "eagler/1_8_8",
+  "version": "u53",
+  "author": "lax1dude",
+  "subplatforms": [
+    "desktop",
+    "teavm-js",
+    "teavm-wasm_gc"
+  ]
+}
