@@ -3,11 +3,10 @@ package net.ada.manifest;
 import java.util.List;
 import java.util.Map;
 
-public record EaglerPackage (
+public record HerzPackage(
         String herz_version,
         String package_name,
         String package_version,
-        String packageMainClass,
         String uuid,
         List<String> authors,
         List<String> description,

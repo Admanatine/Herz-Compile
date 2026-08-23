@@ -12,11 +12,10 @@ import java.util.UUID;
 
 public class Main {
     public static void main(String[] args) throws Exception {
-        EaglerPackage eaglerPackage = new EaglerPackage(
+        HerzPackage eaglerPackage = new HerzPackage(
                 "0.0.0",
                 "ada:example_package",
                 "0.0.1",
-                "net.ada.core.main.HerzCore",
                 UUID.randomUUID().toString(),
                 List.of("Example Author"),
                 List.of("A mod for modders!!!"),
@@ -39,7 +38,7 @@ public class Main {
                 "eagler/1_8_8",
                 "u53",
                 "lax1dude",
-                List.of("desktop", "teavm-js", "teavm-wasm_gc")
+                Map.of("desktop", "desktop", "teavm-js", "teavm-js", "teavm-wasm_gc", "teavm-wasm_gc", "common", "")
         );
         PackagePart packagePart = new PackagePart("eagler/1_8_8/teavm-js", List.of("mixins.common.json"));
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
