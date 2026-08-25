@@ -76,7 +76,7 @@ public class Main {
         packageFolders.forEach(x -> {
                 gson = new GsonBuilder().setPrettyPrinting().create();
             try {
-                var h = gson.fromJson(Files.readString(tempPackagePath.resolve("herz-package.json")), HerzPackage.class);
+                var h = gson.fromJson(Files.readString(tempPackagePath.resolve(x).resolve("herz-package.json")), HerzPackage.class);
                 packages.put(h.uuid(), h.package_version());
                 if (!h.dependencies().isEmpty()) {
                     h.dependencies().forEach((a, p) ->  {
