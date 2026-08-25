@@ -18,6 +18,7 @@ import java.util.Map;
 import java.util.stream.Stream;
 
 public class Transformer {
+    // nabbed from prototype. I'm lazy, what can I say.
     public static void runTransformation(Gson gson, Path classesPath, Path mixinRefPath) throws IOException, URISyntaxException {
         System.out.println("Beginning Transformer");
 

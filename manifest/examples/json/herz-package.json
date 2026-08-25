@@ -17,6 +17,6 @@
     "herz"
   ],
   "dependencies": {
-    "ada:core": "f237331c-60f8-4fe5-98c2-c14fbc4ed143"
+    "ada:core": "f237331c-60f8-4fe5-98c2-c14fbc4ed143:0.0.1"
   }
 }

@@ -2,12 +2,16 @@ package net.ada.compositer;
 
 import net.ada.manifest.HerzPackage;
 import net.ada.manifest.HerzVersion;
+import net.ada.manifest.MixinSource;
 import net.ada.manifest.PackagePart;
 import org.apache.commons.io.FileUtils;
 
 import java.io.IOException;
+import java.net.URISyntaxException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -45,13 +49,22 @@ public class PackageHandler {
                 throw new RuntimeException(e);
             }
         });
-        Main.getPlatform().subplatforms().keySet().forEach(path -> {
+        if (Main.getSubpackage().isEmpty()) {
+            Main.setSubpackage(Main.getPlatform().subplatforms().keySet().stream().toList());
+        }
+        Main.getSubpackage().forEach(path -> {
             try {
-                var part = attachJavaClasses(packagePath.resolve(path + ".jar"), Main.getRootPath().resolve(Main.getPlatform().subplatforms().get(path)).resolve("build").resolve("classes").resolve("java").resolve("main"));
-            } catch (IOException e) {
+                Path classpath = Main.getRootPath().resolve(Main.getPlatform().subplatforms().get(path)).resolve("build").resolve("classes").resolve("java").resolve("main");
+                var part = attachJavaClasses(packagePath.resolve(path + ".jar"), classpath);
+                for (String mixinRef : part.mixinsRef()) {
+                    Transformer.runTransformation(Main.getGson(), classpath, classpath.resolve(mixinRef));
+                    FileUtils.delete(classpath.resolve(mixinRef).toFile());
+                }
+            } catch (IOException | URISyntaxException e) {
                 throw new RuntimeException(e);
             }
         });
+
     }
     public PackagePart attachJavaClasses(Path jar, Path target) throws IOException {
         ZipHandler.unzip(jar, target);
