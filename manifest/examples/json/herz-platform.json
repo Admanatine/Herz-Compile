@@ -1,11 +1,12 @@
 {
   "platform": "eagler/1_8_8",
+  "herzVersion": "0.0.0",
   "version": "u53",
   "author": "lax1dude",
   "subplatforms": {
-    "teavm-js": "teavm-js",
     "desktop": "desktop",
     "common": "",
-    "teavm-wasm_gc": "teavm-wasm_gc"
+    "teavm-wasm_gc": "teavm-wasm_gc",
+    "teavm-js": "teavm-js"
   }
 }

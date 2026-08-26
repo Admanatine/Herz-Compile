@@ -2,8 +2,7 @@
   "herz_version": "0.0.0",
   "package_name": "ada:example_package",
   "package_version": "0.0.1",
-  "packageMainClass": "net.ada.core.main.HerzCore",
-  "uuid": "dade10d9-8788-4fa2-880c-bcb0445d5b9f",
+  "uuid": "eda3c056-927e-4218-a26b-e21596014c4f",
   "authors": [
     "Example Author"
   ],
@@ -17,6 +16,6 @@
     "herz"
   ],
   "dependencies": {
-    "ada:core": "f237331c-60f8-4fe5-98c2-c14fbc4ed143:0.0.1"
+    "ada:core": "f237331c-60f8-4fe5-98c2-c14fbc4ed143"
   }
 }

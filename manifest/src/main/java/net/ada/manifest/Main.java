@@ -36,6 +36,7 @@ public class Main {
         );
         HerzPlatform herzPlatform = new HerzPlatform(
                 "eagler/1_8_8",
+                HerzVersion.herz_version,
                 "u53",
                 "lax1dude",
                 Map.of("desktop", "desktop", "teavm-js", "teavm-js", "teavm-wasm_gc", "teavm-wasm_gc", "common", "")

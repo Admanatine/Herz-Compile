@@ -7,7 +7,7 @@ public record HerzPackage(
         String herz_version,
         String package_name,
         String package_version,
-        String uuid,
+         String uuid,
         List<String> authors,
         List<String> description,
         String platformTarget,

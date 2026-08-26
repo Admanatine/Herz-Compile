@@ -5,6 +5,7 @@ import java.util.Map;
 
 public record HerzPlatform
         (String platform,
+         String herzVersion,
          String version,
         String author,
          Map<String, String> subplatforms
