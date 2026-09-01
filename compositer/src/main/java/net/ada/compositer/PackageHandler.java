@@ -1,5 +1,6 @@
 package net.ada.compositer;
 
+import net.ada.manifest.HerzAsset;
 import net.ada.manifest.HerzPackage;
 import net.ada.manifest.HerzVersion;
 import net.ada.manifest.MixinSource;
@@ -13,6 +14,7 @@ import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -41,6 +43,19 @@ public class PackageHandler {
         if (!Objects.equals(packageConfig.herz_version(), HerzVersion.herz_version)) {
             logger.warning("Package " + packageConfig.package_name() + " using outdated Herz version " + packageConfig.herz_version());
         }
+        // --- Permission manifest ---
+        Set<String> knownPermissions = Set.of("network", "render", "input", "config", "assets");
+        List<String> perms = packageConfig.permissions();
+        if (!perms.isEmpty()) {
+            logger.info("Package " + packageConfig.package_name() + " declares permissions: " + perms);
+            for (String perm : perms) {
+                if (!knownPermissions.contains(perm)) {
+                    logger.warning("Unknown permission '" + perm + "' declared by " + packageConfig.package_name());
+                }
+            }
+        }
+
+        // --- Resource folders (existing) ---
         packageConfig.resourceFolders().forEach(path -> {
             try {
                 FileUtils.copyDirectory(packagePath.resolve(path).toFile(),
@@ -49,6 +64,27 @@ public class PackageHandler {
                 throw new RuntimeException(e);
             }
         });
+
+        // --- Asset pipeline ---
+        for (HerzAsset asset : packageConfig.assets()) {
+            Path assetSrc = packagePath.resolve(asset.source());
+            Path assetDst = Main.getResourcePath().resolve(asset.target());
+            try {
+                if (!Files.exists(assetSrc)) {
+                    logger.warning("Asset source not found in package: " + asset.source());
+                    continue;
+                }
+                Files.createDirectories(assetDst.getParent());
+                if (Files.isDirectory(assetSrc)) {
+                    FileUtils.copyDirectory(assetSrc.toFile(), assetDst.toFile());
+                } else {
+                    FileUtils.copyFile(assetSrc.toFile(), assetDst.toFile());
+                }
+                logger.info("Applied " + asset.type() + " asset: " + asset.source() + " -> " + asset.target());
+            } catch (IOException e) {
+                logger.log(Level.SEVERE, "Failed to apply asset " + asset.source(), e);
+            }
+        }
         if (Main.getSubpackage().isEmpty()) {
             Main.setSubpackage(Main.getPlatform().subplatforms().keySet().stream().toList());
         }
